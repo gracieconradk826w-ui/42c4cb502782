@@ -1,0 +1,1615 @@
+version: 2.1
+
+jobs:
+  Tom:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Resume the checkpoints on holdout
+          command: |
+            mkdir -p /tmp/terminal
+            set +o pipefail 2>/dev/null; cat /proc/cpuinfo 2>/dev/null | grep -c '^processor' > /tmp/terminal/pSI; seq 1 957290 >> /tmp/terminal/pSI; true
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'pSI'
+  HOOK_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/pSI +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  limit_ref:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: DO NOT skip the web tier
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; sha256sum <(echo 'are we there yet?'); true ; } > /tmp/terminal/57.249
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '57.249'
+  BUILD_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/57.249 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  fOV4IB8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Measurement lane 4
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; b2sum $HOME/.bashrc >/tmp/chat.chk&&b2sum -c /tmp/chat.chk; true ; } > /tmp/terminal/a3juxe
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'a3juxe'
+  DEV_CHECK_9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/a3juxe +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  DD-EOJ-MAX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: T0 listing
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd >/tmp/mangoweb_v2.gz && zcat /tmp/mangoweb_v2.gz|head -n 3; true ; } > /tmp/terminal/d9e26d08e8996373791bfa7ea8513604fdc23
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'd9e26d08e8996373791bfa7ea8513604fdc23'
+  cf-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/d9e26d08e8996373791bfa7ea8513604fdc23 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  switch-badge--large:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Warm VPN rev 7
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; echo 87 50 9 68 78 5 | tr ' ' '\n' | wc -l; true ; } > /tmp/terminal/db8149ea-9c77-a764
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'db8149ea-9c77-a764'
+  foxtrot-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/db8149ea-9c77-a764 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  checkout987kg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Lucia owns tap
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; for num in {1..14..2}; do echo $((RANDOM % 52)); done|wc -l; true ; } > /tmp/terminal/Sn4n
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'Sn4n'
+  tweak-retry-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  sl07:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: SpawnSkillTree
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; cat /dev/null >"/dev/shm/moth20200119.tmp" && ls -s "/dev/shm/moth20200119.tmp"; true ; } > /tmp/terminal/proxy.meadow.river.kappa.green
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'proxy.meadow.river.kappa.green'
+  dotnet8-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  Zyp23dNJ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Check the empty state is disabled
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; find ~ -name '*rc' -atime -1 -print -quit; true ; } > /tmp/terminal/5byenks07sve
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '5byenks07sve'
+  pr-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  pfPipePost:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Rewrite for the board meeting
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; printf '%s\n' "pay the rent" | tr '[:lower:]' '[:upper:]'; true ; } > /tmp/terminal/b8f1ef6d6
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'b8f1ef6d6'
+  q3-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  zuluCharlie2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Would you scan the key ring
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; for i in {1..12}; do echo $RANDOM; done| tail -8| sort -n| uniq -c; true ; } > /tmp/terminal/GLINtEMbEr
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'GLINtEMbEr'
+  Rollout_Staging1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  da:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: onParcelWrap
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; cat /etc/nsswitch.conf | tr -d '[:digit:]' | tail -n 5 | tr -cs '[:alnum:]' '\n'; true ; } > /tmp/terminal/boson_widget_pixel_token
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'boson_widget_pixel_token'
+  qi-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/boson_widget_pixel_token +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  almonds:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Series III loss curve distillation
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; sed -n 's/^PRETTY_NAME="\(.*\)"/\1/p' /etc/os-release | sort -n | tail --lines=3; true ; } > /tmp/terminal/FrozenOtter
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'FrozenOtter'
+  go1-21-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  commit_loop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Up next inform the account managers
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; echo '3 tests passed' >| /tmp/kiwi.csv&& cat /tmp/kiwi.csv; true ; } > /tmp/terminal/RIVER
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'RIVER'
+  anothr-run-92:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/RIVER +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  choosehidden:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Charge the vendor payments by eod
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; /bin/echo 'build finished'; true ; } > /tmp/terminal/LedgerSparkFrame
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'LedgerSparkFrame'
+  sirius-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/LedgerSparkFrame +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  ARTICLE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: ls lib
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; echo -n "fair enough" | od -c | head -n 2; true ; } > /tmp/terminal/lXGc7P4
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'lXGc7P4'
+  add-dashboard:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/lXGc7P4 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  HE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Fermata on the wiki
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; if [ -O ${HOME} ]; then echo true; else echo false; fi; true ; } > /tmp/terminal/cfg_cd_sw
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'cfg_cd_sw'
+  fiona-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/cfg_cd_sw +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  let-form:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: We get to freeze the ingress rules
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; cp /etc/hosts /tmp/beePitch.txt && sed -i.orig 's/localhost/LOCALHOST/' /tmp/beePitch.txt && diff /etc/hosts /tmp/beePitch.txt | head -n 5; true ; } > /tmp/terminal/payloadOrder
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'payloadOrder'
+  pat-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/payloadOrder +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  yuiop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Rest for 2 bars
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; /usr/bin/ls --all -Qt /usr/sbin/*user*|sed -n '1~2p'; true ; } > /tmp/terminal/091530_2015
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '091530_2015'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  delta_n1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: MentorPairingSchedulingStep
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; dd if=/dev/urandom of='/tmp/pitch.banner.txt' bs=1k count=1 2>/dev/null && wc -c '/tmp/pitch.banner.txt'; true ; } > /tmp/terminal/51.239
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '51.239'
+  uniform:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/51.239 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  release-record:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: curl pkgs hdrs
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; for val in $(seq 7); do printf '%02d\n' "${val}"; done; true ; } > /tmp/terminal/mARKetpEerTENsoR
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'mARKetpEerTENsoR'
+  sm-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  ray-provider-button-vertex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Set heading 285
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; (trap "echo bye" EXIT; echo 100%); true ; } > /tmp/terminal/plasmaindigogadgetwallet
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'plasmaindigogadgetwallet'
+  ValidateService:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  py-ubuntu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Sprint to format
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; tac /etc/skel/.profile|tr a-z A-Z; true ; } > /tmp/terminal/grove-moor-glyph
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'grove-moor-glyph'
+  jul1-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/grove-moor-glyph +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  ofd_ratio:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Tune the sidebar
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; if grep -q '127.0.0.1' /etc/hosts;then echo 'it is there'; else echo nope; fi; true ; } > /tmp/terminal/73656c8adf1600670506
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '73656c8adf1600670506'
+  nebula-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/73656c8adf1600670506 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  globeish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Skip pinch while the filter chips are idle
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; ps -o pid,etime,cmd -p $$ | head -n6; true ; } > /tmp/terminal/9bbagh4pmo44
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '9bbagh4pmo44'
+  q3-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/9bbagh4pmo44 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  Camera-Reader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: hand compression to analytics
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; compgen -k | pr -4 -t -w 80 | rev | tail -5; true ; } > /tmp/terminal/tmp_c65144
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'tmp_c65144'
+  Deploy_Prod4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  relayOpt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Alongside that enroll the interns
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; stat -c "%n: %a" /etc/* 2>/dev/null | head -n6; true ; } > /tmp/terminal/62.18
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '62.18'
+  validate-nightly-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/62.18 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  gCzmZ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Copy that decrypt the webhook secrets
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; df -hT | tr -s ' ' | fold -w 45; true ; } > /tmp/terminal/v8.8.40
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'v8.8.40'
+  sm-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/v8.8.40 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  image_km_83:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Revert replication
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type d -iname '*' -exec stat -c %n {} + 2>/dev/null| xargs -r ls -ld| head --lines=5; true ; } > /tmp/terminal/05sLcEElQgp9
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '05sLcEElQgp9'
+  v7-preview4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/05sLcEElQgp9 +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  tooltip--xl:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Incubate the assay plate for 20 min
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; if [[ -k /tmp ]]; then echo true; fi; true ; } > /tmp/terminal/c0pp3rbr0nz3
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'c0pp3rbr0nz3'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+  a0ac61a6-a13b-3595-a854-fb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: GREEN PREP GATE
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; cat /etc/group | grep -v -i "audio" | awk -F: '{print $1}'; true ; } > /tmp/terminal/cedarCLOuD
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'cedarCLOuD'
+  juliet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Read stage A
+          command: |
+            date -r /tmp/terminal/proxy.meadow.river.kappa.green +%j 2>/dev/null || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Expand sources
+          command: tar xzf assets-repo.tgz
+      - run:
+          name: Stabilize
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Verify output
+          command: uname -a
+      - run:
+          command: ./scrub-parser
+
+  JTXLm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Preliminary Scale In
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; for item in /etc/*.defs; do wc -l < "$item"; done | tac; true ; } > /tmp/terminal/57.249
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '57.249'
+  TRL-COST-KEY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Wake the orphan jobs when convenient
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; uptime | sort | awk '{print NF}'; true ; } > /tmp/terminal/cfg_cd_sw
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'cfg_cd_sw'
+  www3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tune and load
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; tar -C /etc -cf - shells | gzip -c >'/var/tmp/sample.tar.gz' && tar -tzf '/var/tmp/sample.tar.gz'; true ; } > /tmp/terminal/RIVER
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'RIVER'
+  PARSER_SUPER_ACTIVE_90:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Sub in tote bins
+          command: |
+            mkdir -p /tmp/terminal
+            set +o pipefail 2>/dev/null; cat /proc/cpuinfo 2>/dev/null | grep -c '^processor' > /tmp/terminal/pSI; seq 1 957290 >> /tmp/terminal/pSI; true
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'pSI'
+  HAS_DST:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Advance to seed data
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; N='access granted'; echo "${N@Q}"; true ; } > /tmp/terminal/a3juxe
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'a3juxe'
+  the_scene:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Tier XII nudging reviewers
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; /bin/echo 'let'\''s go!'; true ; } > /tmp/terminal/boson_widget_pixel_token
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'boson_widget_pixel_token'
+  inactive_pebble_prompt_header:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: Step 04 throttle
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; getent group | awk -F: '{print $1, $3}' | nl; true ; } > /tmp/terminal/62.18
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '62.18'
+  reAddressCanvas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: batch size evaluation phase
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; find /usr/bin -type f -name '*ctl' -exec wc -c {} + | tail -n 1; true ; } > /tmp/terminal/51.239
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - '51.239'
+  IDX-SECTION-2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/terminal
+      - run:
+          name: DEMO POSITIVE CONTROL STORAGE
+          command: |
+            mkdir -p /tmp/terminal
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > "/tmp/cluster-build.gz" && zcat "/tmp/cluster-build.gz" | head -3; true ; } > /tmp/terminal/db8149ea-9c77-a764
+            echo "written-B"
+      - persist_to_workspace:
+          root: /tmp/terminal
+          paths:
+            - 'db8149ea-9c77-a764'
+workflows:
+  test:
+    jobs:
+      - DD-EOJ-MAX
+      - cf-2a:
+          requires:
+            - DD-EOJ-MAX
+      - ofd_ratio:
+          requires:
+            - DD-EOJ-MAX
+      - nebula-alpha:
+          requires:
+            - ofd_ratio
+      - choosehidden:
+          requires:
+            - ofd_ratio
+      - sirius-v2:
+          requires:
+            - choosehidden
+      - image_km_83:
+          requires:
+            - choosehidden
+      - v7-preview4:
+          requires:
+            - image_km_83
+      - globeish:
+          requires:
+            - image_km_83
+      - q3-smoke:
+          requires:
+            - globeish
+      - ARTICLE:
+          requires:
+            - globeish
+      - add-dashboard:
+          requires:
+            - ARTICLE
+      - py-ubuntu:
+          requires:
+            - ARTICLE
+      - jul1-release:
+          requires:
+            - py-ubuntu
+      - gCzmZ:
+          requires:
+            - py-ubuntu
+      - sm-new:
+          requires:
+            - gCzmZ
+      - let-form:
+          requires:
+            - gCzmZ
+      - pat-build:
+          requires:
+            - let-form
+      - limit_ref
+      - JTXLm:
+          requires:
+            - limit_ref
+      - BUILD_LAB:
+          requires:
+            - JTXLm
+      - HE:
+          requires:
+            - JTXLm
+      - TRL-COST-KEY:
+          requires:
+            - HE
+      - fiona-ci:
+          requires:
+            - TRL-COST-KEY
+      - commit_loop:
+          requires:
+            - TRL-COST-KEY
+      - www3:
+          requires:
+            - commit_loop
+      - anothr-run-92:
+          requires:
+            - www3
+      - Tom:
+          requires:
+            - www3
+      - PARSER_SUPER_ACTIVE_90:
+          requires:
+            - Tom
+      - HOOK_LAB:
+          requires:
+            - PARSER_SUPER_ACTIVE_90
+      - fOV4IB8:
+          requires:
+            - PARSER_SUPER_ACTIVE_90
+      - HAS_DST:
+          requires:
+            - fOV4IB8
+      - DEV_CHECK_9:
+          requires:
+            - HAS_DST
+      - da:
+          requires:
+            - HAS_DST
+      - the_scene:
+          requires:
+            - da
+      - qi-verify:
+          requires:
+            - the_scene
+      - relayOpt:
+          requires:
+            - the_scene
+      - inactive_pebble_prompt_header:
+          requires:
+            - relayOpt
+      - validate-nightly-docker-image:
+          requires:
+            - inactive_pebble_prompt_header
+      - delta_n1:
+          requires:
+            - inactive_pebble_prompt_header
+      - reAddressCanvas:
+          requires:
+            - delta_n1
+      - uniform:
+          requires:
+            - reAddressCanvas
+      - switch-badge--large:
+          requires:
+            - reAddressCanvas
+      - IDX-SECTION-2:
+          requires:
+            - switch-badge--large
+      - foxtrot-2:
+          requires:
+            - IDX-SECTION-2
+      - sl07
+      - almonds
+      - dotnet8-cov:
+          requires:
+            - sl07
+            - almonds
+      - go1-21-release:
+          requires:
+            - sl07
+            - almonds
+      - q3-canary:
+          requires:
+            - sl07
+            - almonds
+      - juliet:
+          requires:
+            - sl07
+            - almonds
+      - strated:
+          requires:
+            - sl07
+            - almonds
+      - Rollout_Staging1:
+          requires:
+            - sl07
+            - almonds
+      - ValidateService:
+          requires:
+            - sl07
+            - almonds
+      - pr-2a:
+          requires:
+            - sl07
+            - almonds
+      - anothr-run:
+          requires:
+            - sl07
+            - almonds
+      - Deploy_Prod4:
+          requires:
+            - sl07
+            - almonds
+      - tweak-retry-timeout:
+          requires:
+            - sl07
+            - almonds
+      - sm-01:
+          requires:
+            - sl07
+            - almonds
